@@ -15,6 +15,7 @@ password = 'secret_sauce'
 
 def get_driver():
     driver = webdriver.Firefox(service=FirefoxService(GeckoDriverManager().install()))
+    driver.implicitly_wait(10)
     return driver
 
 def open_browser(driver, URL):
