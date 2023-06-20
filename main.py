@@ -1,17 +1,14 @@
 from selenium import webdriver
 from selenium.webdriver.firefox.service import Service as FirefoxService
 from webdriver_manager.firefox import GeckoDriverManager
-from selenium.webdriver import FirefoxOptions
-opts = FirefoxOptions()
-opts.add_argument("--headless")
-browser = webdriver.Firefox(options=opts)
+from selenium.webdriver.firefox.options import Options
 
-driver = webdriver.Firefox(service=FirefoxService(GeckoDriverManager().install()))
+options = Options()
+options.headless = True
+
+driver = webdriver.Firefox(options=options, service=FirefoxService(GeckoDriverManager().install()))
 
 from selenium.webdriver.common.by import By
-
-
-
 
 # !!INPUT YOUR VALUES!! I am too lazy to do input box:
 #------------------------------------
