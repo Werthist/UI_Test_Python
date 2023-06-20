@@ -1,12 +1,13 @@
 from selenium import webdriver
-from selenium.webdriver.firefox.service import Service as FirefoxService
-from webdriver_manager.firefox import GeckoDriverManager
-from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.chrome.service import Service as ChromeService
+from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.chrome import Options
 
-options = Options()
-options.headless = True
+chrome_options = Options()
+chrome_options.add_argument("--window-size=1920,800")
+chrome_options.add_argument("--headless")
 
-driver = webdriver.Firefox(options=options, service=FirefoxService(GeckoDriverManager().install()))
+driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=chrome_options)
 
 from selenium.webdriver.common.by import By
 
