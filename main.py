@@ -3,25 +3,38 @@ from selenium.webdriver.firefox.service import Service as FirefoxService
 from webdriver_manager.firefox import GeckoDriverManager
 from selenium.webdriver.common.by import By
 
-driver = webdriver.Firefox(service=FirefoxService(GeckoDriverManager().install()))
-
 URL = 'https://www.saucedemo.com/'
+
+login = 'standard_user'
+password = 'secret_sauce'
 
 # ID: user-name, password, login-button
 
-LOGIN = 'standard_user'
-PASSWORD = 'secret_sauce'
+def get_driver():
+    driver = webdriver.Firefox(service=FirefoxService(GeckoDriverManager().install()))
+    return driver
 
-driver.get(URL)
+def open_browser(driver, URL):
+    driver.get(URL)
 
-login_page_button = driver.find_element(By.ID, 'user-name')
-login_page_button.click()
+def get_element_by_id(driver, locator):
+    return driver.find_element(By.ID, locator)
 
-input_login= driver.find_element(By.ID, 'user-name')
-input_password= driver.find_element(By.ID, 'password')
+def element_click(driver, locator):
+    element = get_element_by_id(driver,locator)
+    element.click()
 
-input_login.send_keys(LOGIN)
-input_password.send_keys(PASSWORD)
+def element_sendkey(driver, locator, text):
+    element = get_element_by_id(driver,locator)
+    element.send_keys(text)
 
-click_page_button = driver.find_element(By.ID, 'login-button')
-click_page_button.click()
+def auth(driver, login, password):
+    element_sendkey(driver, 'user-name', login)
+    element_sendkey(driver, 'password', password)
+    element_click(driver, 'login-button')
+    
+#1-----get site------
+driver = get_driver()
+open_browser(driver, URL)
+#2-----Authenticator------
+auth(driver, login, password)
