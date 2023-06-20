@@ -5,6 +5,6 @@ Trying out selenium:
 Customizing file values in head by hands.
 
 For run test use:
-'''
-python
-'''
+```
+python main.py
+```
