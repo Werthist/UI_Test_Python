@@ -6,6 +6,11 @@ driver = webdriver.Firefox(service=FirefoxService(GeckoDriverManager().install()
 
 from selenium.webdriver.common.by import By
 
+from selenium.webdriver import FirefoxOptions
+opts = FirefoxOptions()
+opts.add_argument("--headless")
+browser = webdriver.Firefox(options=opts)
+
 # !!INPUT YOUR VALUES!! I am too lazy to do input box:
 #------------------------------------
 URL = 'https://www.saucedemo.com/'
