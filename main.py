@@ -3,12 +3,15 @@ from selenium.webdriver.firefox.service import Service as FirefoxService
 from webdriver_manager.firefox import GeckoDriverManager
 from selenium.webdriver.common.by import By
 
+# !!INPUT YOUR VALUES!! I am too lazy to do input box:
+#------------------------------------
 URL = 'https://www.saucedemo.com/'
-
+#------------------------------------
 login = 'standard_user'
+#------------------------------------
 password = 'secret_sauce'
-
-# ID: user-name, password, login-button
+#------------------------------------
+# ID: user-name, password, login-button (site id's)
 
 def get_driver():
     driver = webdriver.Firefox(service=FirefoxService(GeckoDriverManager().install()))
@@ -33,8 +36,10 @@ def auth(driver, login, password):
     element_sendkey(driver, 'password', password)
     element_click(driver, 'login-button')
     
-#1-----get site------
+#1-----Get your site in browser------
 driver = get_driver()
 open_browser(driver, URL)
 #2-----Authenticator------
 auth(driver, login, password)
+
+driver.quit()
